@@ -74,6 +74,26 @@ AddEventHandler("essence:buy", function(amount, index, e)
 	end
 end)
 
+RegisterServerEvent("essence:buygov")
+AddEventHandler("essence:buy", function(amount, index, e)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+
+	local price = StationsPrice[index]
+
+	if(e) then
+		price = index
+	end
+	
+	local toPay = 0--modified buy fuel for gallons
+	if(toPay > xPlayer.getMoney()) then
+		TriggerClientEvent("showErrorNotif", _source, "You don't have enough money.")
+	else
+		xPlayer.removeMoney(toPay)
+		TriggerClientEvent("essence:hasBuying", _source, amount)
+	end
+end)
+
 
 RegisterServerEvent("essence:requestPrice")
 AddEventHandler("essence:requestPrice",function()
@@ -130,7 +150,7 @@ end
 
 
 function renderPrice()
-    for i=0,60 do
+    for i=0,61 do
 		randomPrice = true
         if(randomPrice) then
             --StationsPrice[i] = math.random(15,50)/100

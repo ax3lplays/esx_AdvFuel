@@ -64,7 +64,7 @@ Citizen.CreateThread(function()
 							menu = not menu
 							int = int * 4; -- testing spot
 
-							TriggerServerEvent("essence:buy", 0, stationNumber,false)
+							TriggerServerEvent("essence:buygov", int, stationNumber,false)
 						else
 					
 						end
@@ -104,7 +104,7 @@ Citizen.CreateThread(function()
 
 		------------------------------- EMERGENCY FUEL PART -------------------------------
 
-		if(isNearEmergencyStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and not IsPedInAnyHeli(GetPlayerPed(-1)) and not isBlackListedModel() and not isElectricModel() and isEmergencyModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
+		if(isNearEmergencyStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and not IsPedInAnyHeli(GetPlayerPed(-1)) and not isBlackListedModel() and isEmergencyModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
 			Info(settings[lang].openMenu)
 
 			if(IsControlJustPressed(1, 38)) then
@@ -130,8 +130,9 @@ Citizen.CreateThread(function()
 				TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 					if(cb) then
 						menu = not menu
+						int = int * 4; -- testing spot
 
-						TriggerServerEvent("essence:buy", 0, stationNumber,false)
+						TriggerServerEvent("essence:buygov", int, stationNumber,false)
 					else
 					
 					end
@@ -172,9 +173,10 @@ Citizen.CreateThread(function()
 
 				TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 					if(cb) then
-						menu = not menu
+						menu = not 
+						int = int * 4; -- testing spot
 
-						TriggerServerEvent("essence:buy", 0, stationHeliNumber,false)
+						TriggerServerEvent("essence:buy", int, stationHeliNumber,false)
 					else
 					
 					end
@@ -216,6 +218,7 @@ Citizen.CreateThread(function()
 				TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 					if(cb) then
 						menu = not menu
+						int = int * 4; -- testing spot
 
 						TriggerServerEvent("essence:buy", int, electricityPrice,true)
 					else
@@ -259,8 +262,9 @@ Citizen.CreateThread(function()
 					TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 						if(cb) then
 							menu = not menu
+							int = int * 4; -- testing spot
 
-							TriggerServerEvent("essence:buy", 0, stationBoatNumber,false)
+							TriggerServerEvent("essence:buygov", int, stationBoatNumber,false)
 						else
 					
 						end
@@ -280,6 +284,7 @@ Citizen.CreateThread(function()
 					TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 						if(cb) then
 							menu = not menu
+							int = int * 4; -- testing spot
 
 							TriggerServerEvent("essence:buy", int, stationBoatNumber,false)
 						else
@@ -323,6 +328,7 @@ Citizen.CreateThread(function()
 				TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 					if(cb) then
 						menu = not menu
+						int = int * 4; -- testing spot
 
 						TriggerServerEvent("essence:buy", int, stationPlaneNumber, false)
 					else
@@ -366,8 +372,9 @@ Citizen.CreateThread(function()
 					TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 						if(cb) then
 							menu = not menu
+							int = int * 4; -- testing spot
 
-							TriggerServerEvent("essence:buy", 0, stationHeliNumber,false)
+							TriggerServerEvent("essence:buygov", int, stationHeliNumber,false)
 						else
 					
 						end
@@ -388,6 +395,7 @@ Citizen.CreateThread(function()
 					TriggerEvent("GUI:Option", settings[lang].confirm, function(cb)
 						if(cb) then
 							menu = not menu
+							int = int * 4; -- testing spot
 
 							TriggerServerEvent("essence:buy", int, stationHeliNumber,false)
 						else
