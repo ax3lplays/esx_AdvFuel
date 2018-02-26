@@ -79,9 +79,10 @@ local blips = {
 	{name = blipNameFuelEmergencyAir, id=43, color=63, x=579.850, y=12.390, z=103.230},--Vinewood PD Helipad
 	{name = blipNameFuelEmergencyAir, id=43, color=63, x=449.210, y=-981.340, z=43.690},--Mission Row PD Helipad
 	{name = blipNameFuelEmergencyAir, id=43, color=63, x=478.710, y=-3370.010, z=6.070},--Naval Port Helipad
+	{name = blipNameFuelEmergencyAir, id=43, color=63, x=-735.030, y=-1456.360, z=5.000},--La Puerto Port Helipad
 	
 	--Medivac
-	{name = blipNameFuelEmergencyAir, id=43, cowlor=49, x=299.300, y=-1453.590, z=46.510},--Davis Hospital Heli
+	{name = blipNameFuelEmergencyAir, id=43, color=49, x=299.300, y=-1453.590, z=46.510},--Davis Hospital Heli
 	{name = blipNameFuelEmergencyAir, id=43, color=49, x=352.130, y=-588.550, z=74.140},--Pillbox Hill Hospital Heli
 }
 
@@ -434,6 +435,8 @@ emergencyair_stations = {
 	{x=579.850, y=12.390, z=103.230, s=55},--Vinewood PD Helipad
 	{x=449.210, y=-981.340, z=43.690, s=56,},--Mission Row PD Helipad
 	{x=478.710, y=-3370.010, z=6.070, s=57},--Naval Port Helipad
+	{x=-745.030, y=-1468.360, z=5.000, s=60},--La Puerto Port Helipad South
+	{x=-724.780, y=-1444.150, z=5.000, s=60},--La Puerto Port Helipad North
 	
 --Medivac
 	{x=299.300, y=-1453.590, z=46.510, s=58},--Davis Hospital Helipad
@@ -513,6 +516,7 @@ stationsText[54] =  {x=-1095.210, y=-835.050, z=37.680}--Vespucci PD Helipad
 stationsText[55] =  {x=579.850, y=12.390, z=103.230}--Vinewood PD Helipad
 stationsText[56] =  {x=449.210, y=-981.340, z=43.690}--Mission Row PD Helipad
 stationsText[57] =  {x=478.710, y=-3370.010, z=6.070}--Naval Port Helipad
+stationsText[60] =  {x=-735.030, y=-1456.360, z=5.000},--La Puerto Port Helipad
 	
 --Medivac
 stationsText[58] =  {x=299.300, y=-1453.590, z=46.510}--Davis Hospital Helipad
@@ -603,7 +607,7 @@ Citizen.CreateThread(function()
                 DrawMarker(1, item.x, item.y, item.z-1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 1.0,     132, 52, 0, 0      , 0, 0, 1, 0, 0, 0, 0)
                 local x = stationsText[item.s].x
                 local y = stationsText[item.s].y
-                local z = stationsText[item.s].z
+                local z = stationsText[item.s].z + 2
                 local streetA, streetB = Citizen.InvokeNative( 0x2EB41072B4C1E4C0, x, y, z, Citizen.PointerValueInt(), Citizen.PointerValueInt() )
                 DrawText3D(x,y,z, "~g~ "..settings[lang].emergencyFuelStation .." | "..GetStreetNameFromHashKey(streetA).." "..GetStreetNameFromHashKey(streetB))
                 DrawText3D(x,y,z-0.2, "~b~Department Gas")
@@ -615,7 +619,7 @@ Citizen.CreateThread(function()
                 DrawMarker(1, item.x, item.y, item.z-1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 1.0,     132, 52, 0, 0      , 0, 0, 1, 0, 0, 0, 0)
                 local x = stationsText[item.s].x
                 local y = stationsText[item.s].y
-                local z = stationsText[item.s].z
+                local z = stationsText[item.s].z + 2			
                 local streetA, streetB = Citizen.InvokeNative( 0x2EB41072B4C1E4C0, x, y, z, Citizen.PointerValueInt(), Citizen.PointerValueInt() )
                 DrawText3D(x,y,z, "~g~ "..settings[lang].emergencyAirFuelStation.." | "..GetStreetNameFromHashKey(streetA).." "..GetStreetNameFromHashKey(streetB))
                 DrawText3D(x,y,z-0.2, "~b~Department Air-Fuel")
@@ -631,7 +635,7 @@ function isNearStationMarker(items)
     local ped = GetPlayerPed(-1)
     local plyCoords = GetEntityCoords(GetPlayerPed(-1), 0)
 
-    if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 250) then
+    if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 25) then
         return true
     end
 
@@ -643,7 +647,7 @@ function isNearBoatStationMarker(items)
     local ped = GetPlayerPed(-1)
     local plyCoords = GetEntityCoords(GetPlayerPed(-1), 0)
 
-    if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 250) then
+    if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 25) then
         return true
     end
 
@@ -655,7 +659,7 @@ function isNearElectricStationMarker(items)
     local ped = GetPlayerPed(-1)
     local plyCoords = GetEntityCoords(GetPlayerPed(-1), 0)
 
-    if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 250) then
+    if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 25) then
         return true
     end
 
