@@ -104,7 +104,7 @@ Citizen.CreateThread(function()
 
 		------------------------------- EMERGENCY FUEL PART -------------------------------
 
-		if(isNearEmergencyStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and not IsPedInAnyHeli(GetPlayerPed(-1)) and not isBlackListedModel() and isEmergencyModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
+		if(isNearEmergencyStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and isEmergencyModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
 			Info(settings[lang].openMenu)
 
 			if(IsControlJustPressed(1, 38)) then
@@ -149,7 +149,7 @@ Citizen.CreateThread(function()
 		
 		------------------------------- EMERGENCY AIR/HELI PART -------------------------------
 
-		if(isNearEmergencyAirStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and not isBlackListedModel() and isEmergencyAirModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
+		if(isNearEmergencyAirStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and isEmergencyAirModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
 			Info(settings[lang].openMenu)
 
 			if(IsControlJustPressed(1, 38)) then
@@ -604,7 +604,7 @@ function isNearEmergencyStation()
 	local plyCoords = GetEntityCoords(GetPlayerPed(-1), 0)
 
 	for _,items in pairs(emergency_stations) do
-		if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 2) then
+		if(GetDistanceBetweenCoords(items.x, items.y, items.z, plyCoords["x"], plyCoords["y"], plyCoords["z"], true) < 10) then
 			return true
 		end
 	end
