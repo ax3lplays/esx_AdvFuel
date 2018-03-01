@@ -516,7 +516,7 @@ stationsText[54] =  {x=-1095.210, y=-835.050, z=37.680}--Vespucci PD Helipad
 stationsText[55] =  {x=579.850, y=12.390, z=103.230}--Vinewood PD Helipad
 stationsText[56] =  {x=449.210, y=-981.340, z=43.690}--Mission Row PD Helipad
 stationsText[57] =  {x=478.710, y=-3370.010, z=6.070}--Naval Port Helipad
-stationsText[60] =  {x=-735.030, y=-1456.360, z=5.000},--La Puerto Port Helipad
+stationsText[60] =  {x=-735.030, y=-1456.360, z=5.000}--La Puerto Port Helipad
 	
 --Medivac
 stationsText[58] =  {x=299.300, y=-1453.590, z=46.510}--Davis Hospital Helipad

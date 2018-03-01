@@ -32,6 +32,8 @@ Citizen.CreateThread(function()
 		local isNearFuelPStation, stationPlaneNumber = isNearPlaneStation()
 		local isNearFuelHStation, stationHeliNumber = isNearHeliStation()
 		local isNearFuelBStation, stationBoatNumber = isNearBoatStation()
+		local isNearFuelEStation, stationEmergencyNumber = isNearEmergencyStation()
+		local isNearFuelEAStation, stationEmergencyAirNumber = isNearEmergencyAirStation()
 
 
 		------------------------------- VEHICLE FUEL PART -------------------------------
@@ -104,7 +106,7 @@ Citizen.CreateThread(function()
 
 		------------------------------- EMERGENCY FUEL PART -------------------------------
 
-		if(isNearEmergencyStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and isEmergencyModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
+		if(isNearEmergencyStation() and isEmergencyModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
 			Info(settings[lang].openMenu)
 
 			if(IsControlJustPressed(1, 38)) then
@@ -149,7 +151,7 @@ Citizen.CreateThread(function()
 		
 		------------------------------- EMERGENCY AIR/HELI PART -------------------------------
 
-		if(isNearEmergencyAirStation() and IsPedInAnyVehicle(GetPlayerPed(-1), -1) and isEmergencyAirModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
+		if(isNearEmergencyAirStation() and isEmergencyAirModel() and GetPedVehicleSeat(GetPlayerPed(-1)) == -1) then
 			Info(settings[lang].openMenu)
 
 			if(IsControlJustPressed(1, 38)) then
@@ -176,7 +178,7 @@ Citizen.CreateThread(function()
 						menu = not 
 						int = int * 4; -- testing spot
 
-						TriggerServerEvent("essence:buy", int, stationHeliNumber,false)
+						TriggerServerEvent("essence:buygov", int, stationHeliNumber,false)
 					else
 					
 					end

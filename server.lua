@@ -75,7 +75,7 @@ AddEventHandler("essence:buy", function(amount, index, e)
 end)
 
 RegisterServerEvent("essence:buygov")
-AddEventHandler("essence:buy", function(amount, index, e)
+AddEventHandler("essence:buygov", function(amount, index, e)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
